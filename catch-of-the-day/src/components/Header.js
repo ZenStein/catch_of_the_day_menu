@@ -5,12 +5,7 @@ const Header = (props) => {
     return(
     <header className="top">
     <h1>
-      Catch
-      <span className="ofthe">
-        <span className="of">of</span> 
-        <span className="the">the</span> 
-      </span>
-      Day
+    Boulder-Bay-Station
     </h1>
     <h3 className="tagline"><span>{props.tagline}</span></h3>
     </header>

@@ -1,23 +1,32 @@
 import React from 'react';
+import base from '../base'
 import { getFunName } from '../helpers';
+
 class StorePicker extends React.Component{
   //constructor(){
   //  super()
   //  this.goToStore = this.goToStore.bind(this)
  // }
-    goToStore(event){
-      event.preventDefault()
-      console.log('you hit it')  
-      const storeId = this.storeInput.value
-      this.context.router.transitionTo(`/store/${storeId}`)
-    }
+  attemptLogin(event){
+    event.preventDefault()
+    console.log('you hit it')  
+    console.log(this.email.value)
+    console.log(this.password.value)
+   base.authWithPassword({
+      email    : this.email.value,
+      password :this.password.value   
+   }, (err, user) => {
+     if(user){  }
+     if(err){}
+    });
+  }
   render(){
     return (
-    <form className="store-selector" onSubmit={(e) => this.goToStore(e)}>
-    <h2>Please select a store</h2>
-    <input type="text" required placeholder="Store Name"
-    defaultValue={getFunName()} ref={(input) =>{ this.storeInput = input} }/>
-    <button type="submit" >Visit Store -></button>
+    <form className="store-selector" onSubmit={(e) => this.attemptLogin(e)}>
+    <h2>Boulder Bay Station</h2>
+    <input type="text" required name="email" ref={(input) => this.email = input} placeholder="email" />
+    <input type="text" required name="password" ref={(input) => this.password = input}  placeholder="password" />
+    <button type="submit" >Login</button>
     
     </form>
     )   
